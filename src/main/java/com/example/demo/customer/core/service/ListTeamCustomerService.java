@@ -29,9 +29,9 @@ public class ListTeamCustomerService {
 		return teamCustomerRepository.findAll();
 	}
 	
-	public List<TeamCustomer> getSearchingTeamCustomerList(String teamName)
+	public List<TeamCustomer> getSearchingTeamCustomerList(String teamname)
 	{
-		return teamCustomerRepository.findByTeamNameLike("%"+teamName+"%");
+		return teamCustomerRepository.findByTeamnameLike("%"+teamname+"%");
 	}
 
 }

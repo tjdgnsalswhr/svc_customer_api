@@ -2,12 +2,12 @@ package com.example.demo.customer.core.service;
 
 import java.util.Optional;
 
+
+
 import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.customer.core.entity.TeamCustomer;
@@ -25,7 +25,6 @@ public class AuthTeamCustomerService{
 	@Autowired
 	private final TeamCustomerRepository teamCustomerRepository;
 	private final ModelMapper modelMapper;
-	private PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	
 	public boolean authTeamCustomer(String teamId, String teamPassword)
 	{
@@ -38,8 +37,7 @@ public class AuthTeamCustomerService{
 		else
 		{
 			TeamCustomer teamCustomer = optionalTeamCustomer.get();
-			boolean isPwdMatch = passwordEncoder.matches(teamPassword, teamCustomer.getPassword());
-			if(isPwdMatch)
+			if(teamPassword.equals(teamCustomer.getPassword()))
 			{
 				//일치하는 아이디가 있고 그 비밀번호까지 맞다면 인증 성공
 				return true;

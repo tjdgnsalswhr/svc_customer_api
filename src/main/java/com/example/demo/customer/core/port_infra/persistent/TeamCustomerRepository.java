@@ -8,5 +8,5 @@ import com.example.demo.customer.core.entity.TeamCustomer;
 
 public interface TeamCustomerRepository extends JpaRepository<TeamCustomer, String> {
 
-	public List<TeamCustomer> findByTeamNameLike(String teamName);
+	public List<TeamCustomer> findByTeamnameLike(String teamname);
 }

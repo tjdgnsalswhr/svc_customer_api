@@ -5,8 +5,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.customer.core.application.object.command.TeamCustomerRequestDTO;
 import com.example.demo.customer.core.service.AuthTeamCustomerService;
 
 import io.swagger.annotations.ApiOperation;
@@ -18,11 +22,10 @@ public class AuthTeamCustomerController {
 	//고객 정보 인증 서비스
 	AuthTeamCustomerService authTeamCustomerService;
 	
-	@ApiOperation(value = "팀 정보 인증", httpMethod="GET", notes = "팀 정보 인증 API.")
-	@GetMapping(value="/teamcustomer/auth/{teamId}/{teamPassword}")
-	public ResponseEntity<Object> authTeamCustomer(@PathVariable String teamId, @PathVariable String teamPassword)
+	@ApiOperation(value = "팀 정보 인증", httpMethod="POST", notes = "팀 정보 인증 API.")
+	@PostMapping(value="/teamcustomer/auth")
+	public ResponseEntity<Object> authTeamCustomer(@RequestBody TeamCustomerRequestDTO teamCustomerRequestDTO)
 	{
-		return new ResponseEntity<>(authTeamCustomerService.authTeamCustomer(teamId, teamPassword), HttpStatus.OK);
+		return new ResponseEntity<>(authTeamCustomerService.authTeamCustomer(teamCustomerRequestDTO.getId(), teamCustomerRequestDTO.getPassword()), HttpStatus.OK);
 	}
-
 }
