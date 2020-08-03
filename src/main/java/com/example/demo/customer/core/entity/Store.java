@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.example.demo.customer.core.application.object.command.TeamCustomerRequestDTO;
+import com.example.demo.customer.core.application.object.command.StoreRequestDTO;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -32,12 +32,12 @@ public class Store
 	String address;		//가게 주소
 	String openinfo;
 	String phonenumber;
-	int storecode;		//1.한식 2.중식 3.일식 4.기타
+	String storecode;		//1.한식 2.중식 3.일식 4.기타
 	int monthprofit; 	//월 수익
 	
 	
 	@Builder
-	public Store(String StoreId, String StorePassword, String StoreName, String StoreOwnerName, String StoreAddress, String StorePhoneNumber, int StoreCode)
+	public Store(String StoreId, String StorePassword, String StoreName, String StoreOwnerName, String StoreAddress, String StorePhoneNumber, String StoreCode)
 	{
 		this.id = StoreId;
 		this.password = StorePassword;
@@ -46,5 +46,19 @@ public class Store
 		this.address = StoreAddress;
 		this.phonenumber = StorePhoneNumber;
 		this.storecode = StoreCode;
+	}
+	
+	public void update(StoreRequestDTO storeRequestDTO)
+	{
+		this.id = storeRequestDTO.getId(); 			
+		this.password = storeRequestDTO.getPassword(); 	
+		this.storename = storeRequestDTO.getStorename(); 	
+		this.ownername = storeRequestDTO.getOwnername(); 	
+		this.address = storeRequestDTO.getAddress();		
+		this.openinfo = storeRequestDTO.getOpeninfo();
+		this.phonenumber = storeRequestDTO.getPhonenumber();
+		this.storecode = storeRequestDTO.getStorecode();		
+		this.monthprofit = storeRequestDTO.getMonthprofit();
+		
 	}
 }

@@ -1,7 +1,20 @@
 package com.example.demo.customer.core.application.object.command;
 
-import io.swagger.annotations.ApiModelProperty;
+import java.util.Date;
 
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
+
+
+@Slf4j
+@ToString
+@NoArgsConstructor
+@Getter
+@Setter
 public class StoreRequestDTO {
 	
 	@ApiModelProperty(example = "id01")
@@ -26,7 +39,7 @@ public class StoreRequestDTO {
 	String phonenumber; //가게 전화번호
 	
 	@ApiModelProperty(example = "1")
-	int storecode; 		//남은 금액
+	String storecode; 		//음식 종류
 	
 	@ApiModelProperty(example = "1000000")
 	int monthprofit; 	//월 수익
